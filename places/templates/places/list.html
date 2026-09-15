@@ -1,0 +1,17 @@
+{% extends './base.html' %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>FAV places 📍</h1>
+        <p>A list of my (and additional) favorite restaurants, parks, and recreational spots.</p>
+    </div>
+    <div class="places-grid">
+        {% for place in places %}
+            {% include 'places/_card_place.html' with place=place %}
+        {% empty %}
+            <div class="empty-state">
+                <p>You don't have any saved places yet.</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="detail-container">
+        <a href="{% url 'places:list' %}" class="back-link">← Return to My fav places</a>
+
+        <div class="detail-card">
+            <div class="detail-image-wrapper">
+                <img src="{% static 'places/img/default.png' %}" alt="{{ place.title }}" class="detail-img">
+                <span class="card-badge">{{ place.place_type }}</span>
+            </div>
+
+            <div class="detail-body">
+                <div class="detail-header-row">
+                    <h1 class="detail-title">{{ place.title }}</h1>
+                    <span class="detail-stars">{{ place.stars }}</span>
+                </div>
+
+                <p class="detail-location">📍 {{ place.display_location }}</p>
+
+                <hr class="divider">
+
+                <h3>About place:</h3>
+                <p class="detail-full-description">{{ place.description }}</p>
+
+                <div class="detail-footer-info">
+                    <small>Added: {{ place.created_at }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

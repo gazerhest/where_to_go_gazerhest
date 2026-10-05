@@ -1,0 +1,23 @@
+{% load static %}
+
+<div class="place-card">
+    <div class="card-image-wrapper">
+        <img src="{% static 'places/img/default.png' %}" alt="{{ place.title }}" class="card-img">
+        <span class="card-badge">{{ place.place_type }}</span>
+    </div>
+    <div class="card-body">
+        <div class="card-header-row">
+            <h3 class="card-title">
+                <a href="{% url 'places:detail' place.id %}">{{ place.title }}</a>
+            </h3>
+            <span class="card-stars">{{ place.stars }}</span>
+        </div>
+
+        <p class="card-location">📍 {{ place.display_location }}</p>
+        <p class="card-description">{{ place.pre_description }}</p>
+
+        <div class="card-footer-info">
+            <small>Added: {{ place.created_at }}</small>
+        </div>
+    </div>
+</div>

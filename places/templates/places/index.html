@@ -1,0 +1,43 @@
+{% extends './base.html' %}
+{% block content %}
+<div class="hero-section">
+    <h1 class="hero-title">Where to go?</h1>
+    <p class="hero-subtitle">
+        Where To Go will help you find the perfect spot for an evening stroll,
+        a romantic dinner, or a get-together with friends from your personal list of favorite places.
+    </p>
+
+    {% if places %}
+        <div class="hero-actions">
+            <a href="{% url 'places:index' %}?random=true" class="btn btn-random">
+                Where to go today? RANDOM
+            </a>
+            <a href="{% url 'places:list' %}" class="btn btn-outline">
+                View all places
+            </a>
+        </div>
+    {% else %}
+        <p class="empty-hint">You don't have any added places. Create one.</p>
+        <a href="{% url 'places:add' %}" class="btn btn-primary">+ Add place</a>
+    {% endif %}
+</div>
+
+{% if random_place %}
+    <div class="random-result-box">
+        <div class="result-header">
+            <h2>Today I insist you to visit:</h2>
+        </div>
+
+        <div class="random-card-wrapper">
+            {% include 'places/_card_place.html' with place=random_place %}
+        </div>
+
+        <div style="margin-top: 15px;">
+            <a href="{% url 'places:index' %}?random=true" class="btn btn-secondary">
+                Pick another one
+            </a>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
